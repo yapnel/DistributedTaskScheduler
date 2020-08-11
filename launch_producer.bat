@@ -1,0 +1,1 @@
+start cmd /k ".\env\Scripts\Activate && celery -A my_app.worker.celery beat -l info -S celery_sqlalchemy_scheduler.schedulers:DatabaseScheduler"

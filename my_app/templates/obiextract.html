@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+
+<title>OBI Extract</title>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#target').change(function () {
+			if ($(this).val() == "Tableau") {
+				$('#tableau').show();
+				$('#database').hide();
+			} else {
+				$('#tableau').hide();
+				$('#database').show();
+			}
+		});
+
+		$('#tableau').show();
+		$('#database').hide();
+
+	});
+</script>
+{% endblock %}
+
+{% block container %}
+<form method="POST">
+
+	<h5>Mandatory arguements</h5>
+	<p>Schedule Job Name: <input type="text" name="jobname" value="Job Name"></p>
+	<p>OBIEE Report Catalogue Path: <input type="text" name="reportpath"></p>
+	<label for="frcenv">FRC environment:</label>
+	<select id="frcenv" name="frcenv">
+		<option value="frc-dev">frc-dev</option>
+		<option value="frc-test">frc-test</option>
+		<option value="frc-prod">frc-prod</option>
+	</select>
+	<p>RACFID: <input type="text" name="racfid" value={{ current_user.username }} readonly></p>
+	<label for="department">Franchises</label>
+	<select id="department" name="department">
+		<option value="CPB">CPB</option>
+		<option value="PB">PB</option>
+		<option value="NWM">NWM</option>
+		<option value="SNF">SNF</option>
+		<option value="RBSI">RBSI</option>
+	</select>
+	</br>
+	</br>
+	<h5>Choose Target Destination</h5>
+	<select id="target" name="target">
+		<option value="Tableau">Tableau</option>
+		<option value="Database">Database</option>
+	</select>
+	</br>
+	</br>
+</br>
+	<div id="tableau" style="display:none">
+		<h5>Tableau arguements</h5>
+		<p>Tableau Project Name: <input type="text" name="project" id="project"></p>
+		<p>Tableau Hyper File Name: <input type="text" name="filename" id="filename"></p>
+		<label for="tabenv">Tableau environment:</label>
+		<select id="tabenv" name="tabenv">
+			<option value="tab-dev">tab-dev</option>
+			<option value="tab-test">tab-test</option>
+			<option value="tab-prod">tab-prod</option>
+		</select>
+		</p>
+		<label for="tabmode">Tableau environment:</label>
+		<select id="tabmode" name="tabmode">
+			<option value="Overwrite">Overwrite</option>
+			<option value="Append">Append</option>
+			<option value="CreateNew">CreateNew</option>
+		</select>
+	</div>
+
+	<div id="database" style="display:none">
+		<h5>Database arguements</h5>
+		<p>Table Name: <input type="text" name="tablename"></p>
+		<label for="dbmode">FRC environment:</label>
+		<select id="dbmode" name="dbmode">
+			<option value="Overwrite">Overwrite</option>
+			<option value="Append">Append</option>
+		</select>
+		</p>
+		<label for="database">Database:</label>
+		<select id="database" name="database">
+			<option value="prosper">prosper</option>
+		</select>
+	</div>
+	</br>
+
+	<h5>Schedule</h5>
+	<div id='example1b'></div>
+	<p>Generated cron entry: <input type="text" id='cron' name="cron"> </p>
+	<input class="btn btn-default submit" type="submit" name="submit" value="Dispatch">
+	</div>
+	</br>
+</form>
+
+
+{% endblock %}

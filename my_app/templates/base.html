@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ url_for('static', filename='css/jquery-cron.css') }}" rel="stylesheet" />
+    <link type="text/css" href="{{ url_for('static', filename='css/jquery-gentleSelect.css') }}" rel="stylesheet" />
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-cron.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-gentleSelect.js') }}"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#example1b').cron({
+          initial: "* * * * *",
+          onChange: function () {
+          document.getElementById("cron").value = $(this).cron("value");
+          },
+          useGentleSelect: true
+          });
+
+        $('#target').change(function () {
+          if ($(this).val() == "1") {
+            $('#tableau').show();
+            $('#database').hide();
+          } else {
+            $('#tableau').hide();
+            $('#database').show();
+          }
+        });
+
+        $('#tableau').show();
+        $('#database').hide();
+
+      });
+    </script>
+    {% block scripts %}
+    {% endblock %}
+  </head>
+  <body class="login">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+
+        {% if current_user.is_authenticated %}
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{{ url_for('auth.home') }}">Home</a>
+          <a class="navbar-brand" href="{{ url_for('auth.flower') }}">Monitoring</a>
+        </div>
+        <div class="navbar-header">
+          <h6><a href="{{ url_for('auth.logout') }}">{{ current_user.username }}</a></h6>
+        </div> 
+        {% endif %}
+
+      </div>
+    </div>
+    <div class="container">
+    <br/>
+    <div>
+      {% for category, message in get_flashed_messages(with_categories=true) %}
+        <div class="alert alert-{{category}} alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{ message }}
+        </div>
+      {% endfor %}
+      </div>
+    {% block container %}{% endblock %}
+    </div>
+
+
+
+  </body>
+</html>

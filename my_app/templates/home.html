@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<h1>Python Distributed Task Scheduler</h1>
+{% if current_user.is_authenticated %}
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="">
+          <div class="x_content">
+            <br />
+            <div class="row">
+              <div class="col-md-3   widget widget_tally_box">
+                <div class="x_panel ui-ribbon-container fixed_height_390">
+                  <div class="ui-ribbon-wrapper">
+                    <div class="ui-ribbon">
+                      Popular
+                    </div>
+                  </div>
+                  <div class="x_title">
+                    <h2><a href="{{ url_for('auth.obiextract') }}">FRC Extract</a></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <p>Short Description</p>
+
+                    <div class="divider"></div>
+
+                    <p>If you've decided to go in development mode and tweak all of this a bit, there are few things you
+                      should do.</p>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3   widget widget_tally_box">
+                <div class="x_panel  fixed_height_390">
+                  <div class="x_title">
+                    <h2><a href="{{ url_for('auth.unpivot') }}">Unpivot</a></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <p>Short Description</p>
+
+                    <div class="divider"></div>
+
+                    <p>If you've decided to go in development mode and tweak all of this a bit, there are few things you
+                      should do.</p>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3   widget widget_tally_box">
+                <div class="x_panel ui-ribbon-container fixed_height_390">
+                  <div class="ui-ribbon-wrapper">
+                    <div class="ui-ribbon">
+                      Popular
+                    </div>
+                  </div>
+                  <div class="x_title">
+                    <h2>XXXX</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <p>Short Description</p>
+
+                    <div class="divider"></div>
+
+                    <p>If you've decided to go in development mode and tweak all of this a bit, there are few things you
+                      should do.</p>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
+
+
+
+
+
+
+
+
+{% else %}
+Click here to <a href="{{ url_for('auth.login') }}">login</a>
+{% endif %}
+{% endblock %}

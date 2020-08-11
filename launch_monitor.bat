@@ -1,0 +1,1 @@
+start cmd /k ".\env\Scripts\Activate && celery flower -A my_app.worker.celery -l info --broker_api=http://guest:guest@localhost:15672/api/ --persistent=True"

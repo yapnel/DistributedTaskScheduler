@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+	<title>Unpivot</title>
+{% endblock %}
+
+{% block container %}
+	<form method="POST">
+		<p>Schedule Job: <input type="text" name="jobname" value="Job Name"></p>
+		<h4>Mandatory arguements</h4>
+		<p>Path to excel file: <input type="text" name="filename"></p>
+		<p>Excel sheet name: <input type="text" name="sheet" value=""></p>
+		<p>Databse name: <input type="text" name="database" value=""></p>
+		<label for="mode">Mode</label>
+		<select id="mode" name="mode">
+			<option value="replace">replace</option>
+			<option value="append">append</option>
+		</select>
+		<p>Table name: <input type="text" name="tablename" value=""></p>
+		<h4>Schedule</h4>
+		<div id='example1b'></div>
+		<p>Generated cron entry: <input type="text" id='cron' name="cron"> </p>
+		<input class="btn btn-default" type="submit" name="submit" value="Dispatch">
+		</div>
+
+	</form>
+{% endblock %}
